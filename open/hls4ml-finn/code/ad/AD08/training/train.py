@@ -296,3 +296,4 @@ if __name__ == "__main__":
         model.save(model_file_path)
         com.logger.info("save_model -> {}".format(model_file_path))
         print("============== END TRAINING ==============")
+
