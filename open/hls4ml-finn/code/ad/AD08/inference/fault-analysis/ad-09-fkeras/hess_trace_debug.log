@@ -31,3 +31,6 @@ Trace = 2372419.25
 num_val_inputs = 16384 | batch_size = 512
 Time = 28.82886552810669 seconds
 Trace = 2432365.0
+num_val_inputs = 16384 | batch_size = 512
+Time = 40.32089805603027 seconds
+Trace = 2454328.5
