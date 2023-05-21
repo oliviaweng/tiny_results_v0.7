@@ -1,8 +1,8 @@
 #!/bin/bash
-PRETRAINED_MODEL=../training/model/ad08-fkeras/model_ToyCar.h5
+PRETRAINED_MODEL=../training/model/ad09-fkeras/model_ToyCar.h5
 X_NPY_DIR=./processed_data/64input_test_data.npy
 Y_NPY_DIR=./processed_data/64input_test_data_ground_truths.npy
-OUTPUT_DIR=./fault-analysis/ad-08-fkeras
+OUTPUT_DIR=./fault-analysis/ad-09-fkeras
 
 # Sanity check
 #bits=10600
@@ -13,8 +13,8 @@ lbi=$((bits/VMs * system))
 hbi=$((bits/VMs * system + bits/VMs))
 for (( i=$lbi; i<$hbi ; i++ )); do 
 echo "Sanity check ber = 0"
-python3 sampling_faulty_eval_experiment.py \
-        --config ad08-fkeras.yml \
+python3 iccad2023_experiment_ad09.py \
+        --config ad09-fkeras.yml \
         --output_dir $OUTPUT_DIR \
         --x_npy_dir $X_NPY_DIR \
         --y_npy_dir $Y_NPY_DIR \
@@ -27,6 +27,6 @@ python3 sampling_faulty_eval_experiment.py \
         --bfr_end   $((i+1)) \
         --bfr_step  1 \
         --batch_size 512 \
-        --num_val_inputs 4096
+        --num_val_inputs 16384
 exit
 done

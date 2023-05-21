@@ -165,7 +165,8 @@ def main(args):
         curr_val_output = X[: args.num_val_inputs]
     else:
         raise RuntimeError("Improper configuration for 'num_val_inputs'")
-
+    #@Andy: These are the non-zero indices for AD09 that you only need to bit flip
+    nonzero_idx = np.load(os.path.join(args.output_dir,"ad09_non_zero_indices.npy"))
     # S: Configure which bits will be flipped
     bit_flip_range_step = (0, 2, 1)
     bit_flip_range_step = (0, fmodel.num_model_param_bits, 1)
@@ -195,6 +196,7 @@ def main(args):
         pred_time = time.time() - pred_start
         print(f"Prediction compute time: {pred_time} seconds")
 
+        # @Andy: Log this loss for oracle
         print("mse loss = %.3f" % loss_val)
 
         hess_start = time.time()
